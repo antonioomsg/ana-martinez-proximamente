@@ -30,7 +30,7 @@ a:hover { color: var(--soft); }
 .eyebrow { margin: 0 0 16px; font: 400 .75rem/1.2 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
 h1, h2 { margin: 0 0 16px; font-family: var(--serif); font-weight: 400; line-height: 1.1; font-size: clamp(1.9rem, 1.4rem + 1.6vw, 2.75rem); }
 .lead { margin: 0; font-size: 1.25rem; font-style: italic; }
-.col + .col { border-left: 1px solid rgba(25, 46, 46, .22); padding-left: clamp(32px, 4vw, 64px); margin-left: calc(clamp(32px, 4vw, 64px) * -1); }
+.col + .col { border-left: 1px solid rgba(25, 46, 46, .22); padding-left: calc(clamp(32px, 4vw, 64px) / 2); margin-left: calc(clamp(32px, 4vw, 64px) / -2); }
 
 .aviso { max-width: 720px; }
 .aviso label.mail { display: block; margin-bottom: 8px; font: 400 .75rem/1.2 var(--sans); letter-spacing: .16em; text-transform: uppercase; }

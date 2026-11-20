@@ -27,7 +27,7 @@ a:hover { color: var(--soft); }
 .ana-eyebrow { margin: 0 0 16px; font: 400 .75rem/1.2 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
 h1, h2 { margin: 0 0 16px; font-family: var(--serif); font-weight: 400; line-height: 1.1; font-size: clamp(1.9rem, 1.4rem + 1.6vw, 2.75rem); }
 .ana-lead { margin: 0; font-size: 1.25rem; font-style: italic; }
-.ana-col + .ana-col { border-left: 1px solid rgba(25, 46, 46, .22); padding-left: clamp(32px, 4vw, 64px); margin-left: calc(clamp(32px, 4vw, 64px) * -1); }
+.ana-col + .ana-col { border-left: 1px solid rgba(25, 46, 46, .22); padding-left: calc(clamp(32px, 4vw, 64px) / 2); margin-left: calc(clamp(32px, 4vw, 64px) / -2); }
 
 .ana-aviso { max-width: 720px; margin-top: 48px; }
 .ana-aviso label.ana-mail { display: block; margin-bottom: 8px; font: 400 .75rem/1.2 var(--sans); letter-spacing: .16em; text-transform: uppercase; }
