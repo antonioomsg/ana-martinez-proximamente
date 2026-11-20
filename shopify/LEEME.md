@@ -6,7 +6,7 @@ Sustituye la página de contraseña de la tienda mientras se monta. Los correos 
 1. Admin de Shopify, Tienda online, Temas, `...` del tema, **Duplicar** (haz copia antes de tocar nada).
 2. En la copia: `...`, **Editar código**.
 3. Sube o pega cada archivo en su carpeta:
-   - `assets/`: `ana-proximamente.css`, `ana-obra.jpg`, `ana-firma.png`, `ana-jost.woff2`, `ana-ebgaramond-roman.woff2`, `ana-ebgaramond-italic.woff2` (y las licencias `OFL-*.txt`)
+   - `assets/`: `ana-proximamente.css`, `ana-fondo.jpg`, `ana-fondo-movil.jpg`, `ana-firma.png`, `ana-jost.woff2`, `ana-ebgaramond-roman.woff2`, `ana-ebgaramond-italic.woff2` (y las licencias `OFL-*.txt`)
    - `sections/ana-proximamente.liquid`
    - `templates/password.json` (sustituye el existente)
    - `layout/password.liquid` (sustituye el existente; el del tema suele cargar cosas que aquí sobran)

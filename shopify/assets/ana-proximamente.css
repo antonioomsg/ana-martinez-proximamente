@@ -1,4 +1,4 @@
-/* Ana Martínez · Próximamente (Shopify). Fuentes Jost + EB Garamond (OFL) declaradas en la sección. */
+/* Ana Martínez · Próximamente (Shopify): ventana sobre la web difuminada. Fuentes Jost + EB Garamond (OFL) declaradas en la sección. */
 
 :root {
   --ink: #192e2e;
@@ -10,70 +10,65 @@
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--sand); color: var(--ink); font-family: var(--serif); font-size: 1.125rem; line-height: 1.5; }
+body { margin: 0; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 24px;
+  background: #1f4650; color: var(--ink); font-family: var(--serif); font-size: 1.125rem; line-height: 1.5; }
 a { color: inherit; text-underline-offset: 4px; text-decoration-color: var(--accent); }
 a:hover { color: var(--soft); }
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
-.ana-page { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); min-height: 100vh; min-height: 100svh; }
-.ana-art { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: #1c4a55; }
-.ana-art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; }
-
-.ana-panel { display: flex; flex-direction: column; justify-content: space-between; gap: 48px; padding: 56px clamp(32px, 5vw, 88px) 32px; }
-.ana-brand { margin: 0; font: 400 .875rem/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; }
-.ana-firma { width: clamp(180px, 22vw, 280px); height: auto; margin: 0 0 8px -4px; filter: invert(1) brightness(.2) sepia(.4) hue-rotate(130deg); }
-.ana-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4vw, 64px); }
-.ana-eyebrow { margin: 0 0 16px; font: 400 .75rem/1.2 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
-h1, h2 { margin: 0 0 16px; font-family: var(--serif); font-weight: 400; line-height: 1.1; font-size: clamp(1.9rem, 1.4rem + 1.6vw, 2.75rem); }
-.ana-lead { margin: 0; font-size: 1.25rem; font-style: italic; }
-.ana-col + .ana-col { border-left: 1px solid rgba(25, 46, 46, .22); padding-left: calc(clamp(32px, 4vw, 64px) / 2); margin-left: calc(clamp(32px, 4vw, 64px) / -2); }
-
-.ana-aviso { max-width: 720px; margin-top: 48px; }
-.ana-aviso label.ana-mail { display: block; margin-bottom: 8px; font: 400 .75rem/1.2 var(--sans); letter-spacing: .16em; text-transform: uppercase; }
-.ana-row { display: flex; gap: 0; }
-.ana-row input[type=email] { flex: 1 1 auto; min-width: 0; height: 56px; border: 1px solid var(--ink); border-right: 0; background: #fff; padding: 0 18px; font: 400 1rem var(--sans); color: var(--ink); border-radius: 0; }
-.ana-row input::placeholder { color: #5c6f6f; }
-.ana-row button { height: 56px; padding: 0 24px; border: 1px solid var(--ink); background: var(--ink); color: #fff; font: 400 .8125rem/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
-.ana-row button:hover { background: var(--soft); border-color: var(--soft); }
-.ana-row button span { display: block; }
-.ana-row button span + span { font-size: .6875rem; opacity: .85; margin-top: 2px; }
-.ana-consent { display: flex; gap: 12px; align-items: flex-start; margin: 16px 0 0; font: 400 .875rem/1.45 var(--sans); }
-.ana-consent input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--ink); }
-.ana-consent em { display: block; margin-top: 4px; color: var(--soft); font-style: normal; }
-.ana-gracias { margin: 0; font-size: 1.375rem; }
-.ana-gracias em { display: block; color: var(--soft); }
+.ana-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 [hidden] { display: none !important; }
 
-.ana-links { display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: center; margin-top: 24px; font: 400 .875rem var(--sans); letter-spacing: .08em; }
-.ana-btn { display: inline-block; padding: 12px 22px; border: 1px solid var(--ink); text-decoration: none; text-transform: uppercase; letter-spacing: .12em; font-size: .8125rem; }
-.ana-btn:hover { background: var(--ink); color: #fff; }
-.ana-foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; padding-top: 24px; border-top: 1px solid rgba(25, 46, 46, .22); font: 400 .75rem/1.4 var(--sans); letter-spacing: .12em; color: var(--soft); }
+/* Fondo: la web detrás, borrosa y algo velada */
+.ana-fondo { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+.ana-fondo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: blur(14px) saturate(1.05); transform: scale(1.08); }
+.ana-fondo::after { content: ""; position: absolute; inset: 0; background: rgba(15, 35, 40, .28); }
 
-@media (max-width: 900px) {
-  .ana-page { display: block; }
-  .ana-art { position: relative; height: 44svh; min-height: 260px; }
-  .ana-art img { object-position: 50% 35%; }
-  .ana-panel { padding: 40px 24px 28px; gap: 36px; }
-  .ana-firma { width: 170px; }
-}
-@media (max-width: 640px) {
-  .ana-cols { grid-template-columns: 1fr; gap: 28px; }
-  .ana-col + .ana-col { border-left: 0; margin-left: 0; padding-left: 0; border-top: 1px solid rgba(25, 46, 46, .22); padding-top: 28px; }
-  .ana-row { flex-direction: column; gap: 10px; }
-  .ana-row input[type=email] { border-right: 1px solid var(--ink); }
-  .ana-row button { width: 100%; padding: 12px 24px; }
-}
-@media (prefers-reduced-motion: no-preference) { .ana-gracias { animation: in .5s ease; } @keyframes in { from { opacity: 0; } } }
+/* Ventana */
+.ana-modal { position: relative; z-index: 1; width: min(100%, 560px); padding: 48px 48px 36px; text-align: center;
+  background: rgba(255, 255, 255, .96); box-shadow: 0 24px 70px rgba(0, 0, 0, .35);
+  animation: ana-entra .6s ease-out both; }
+@keyframes ana-entra { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: none; } }
+.ana-firma { display: block; width: 210px; height: auto; margin: 0 auto 28px; filter: brightness(0); opacity: .88; }
+.ana-eyebrow { margin: 0 0 14px; font: 400 .75rem/1.2 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--soft); }
+.ana-modal h1 { margin: 0; font: 400 clamp(1.875rem, 1.5rem + 1.6vw, 2.5rem)/1.1 var(--serif); }
+.ana-titulo-en { margin: 6px 0 0; font: italic 400 clamp(1.25rem, 1.1rem + .7vw, 1.5rem)/1.2 var(--serif); color: var(--soft); }
+.ana-lead { margin: 20px 0 0; font-size: 1.0625rem; }
+.ana-lead em { display: block; color: var(--soft); }
 
-.ana-error { margin: 0 0 16px; padding: 12px 16px; border: 1px solid #8a2b2b; color: #6e1f1f; background: #fff; font: 400 .875rem/1.45 var(--sans); }
+.ana-aviso { margin: 28px 0 0; text-align: left; }
+.ana-row { display: flex; }
+.ana-row input[type=email] { flex: 1 1 auto; min-width: 0; height: 52px; border: 1px solid var(--ink); border-right: 0; background: #fff; padding: 0 16px; font: 400 1rem var(--sans); color: var(--ink); border-radius: 0; }
+.ana-row input::placeholder { color: #5c6f6f; }
+.ana-row button { flex: none; height: 52px; padding: 0 22px; border: 1px solid var(--ink); background: var(--ink); color: #fff; font: 400 .8125rem/1.15 var(--sans); letter-spacing: .14em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
+.ana-row button:hover { background: var(--soft); border-color: var(--soft); }
+.ana-row button span { display: block; }
+.ana-row button span + span { font-size: .625rem; opacity: .8; margin-top: 2px; }
+.ana-consent { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0 0; font: 400 .8125rem/1.45 var(--sans); }
+.ana-consent input { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--ink); }
+.ana-consent em { display: block; margin-top: 2px; color: var(--soft); font-style: normal; }
+.ana-gracias { margin: 0; text-align: center; font-size: 1.375rem; }
+.ana-gracias em { display: block; color: var(--soft); }
+
+.ana-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin: 30px 0 0; padding-top: 22px; border-top: 1px solid rgba(25, 46, 46, .18);
+  font: 400 .75rem var(--sans); letter-spacing: .12em; text-transform: uppercase; }
+.ana-links a:last-child { text-transform: none; letter-spacing: .04em; font-size: .8125rem; }
+
+@media (max-width: 560px) {
+  body { padding: 16px; align-items: center; }
+  .ana-modal { padding: 36px 22px 26px; }
+  .ana-firma { width: 170px; margin-bottom: 22px; }
+  .ana-row { flex-direction: column; }
+  .ana-row input[type=email] { border-right: 1px solid var(--ink); border-bottom: 0; }
+  .ana-row button { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .ana-modal { animation: none; } }
+
+.ana-error { margin: 0 0 12px; padding: 10px 12px; border: 1px solid #9a3b2e; color: #9a3b2e; font: 400 .8125rem/1.4 var(--sans); }
 .ana-error em { display: block; font-style: normal; }
 .ana-error ul { margin: 6px 0 0; padding-left: 18px; }
-.ana-foot { align-items: center; }
-.ana-owner summary { cursor: pointer; list-style: none; opacity: .75; }
+.ana-owner { margin: 18px 0 0; font: 400 .6875rem var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+.ana-owner summary { cursor: pointer; list-style: none; opacity: .7; }
 .ana-owner summary::-webkit-details-marker { display: none; }
-.ana-owner[open] { width: 100%; }
-.ana-owner-form { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-.ana-owner-form input { flex: 1 1 180px; height: 40px; border: 1px solid var(--ink); padding: 0 12px; font: 400 .875rem var(--sans); background: #fff; border-radius: 0; }
-.ana-owner-form button { height: 40px; padding: 0 18px; border: 1px solid var(--ink); background: var(--ink); color: #fff; font: 400 .75rem var(--sans); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
-.ana-owner-form .ana-error { flex: 1 1 100%; margin: 0; }
+.ana-owner-form { display: flex; gap: 0; justify-content: center; margin-top: 10px; }
+.ana-owner-form input { height: 40px; min-width: 0; border: 1px solid var(--ink); border-right: 0; padding: 0 12px; font: 400 .875rem var(--sans); border-radius: 0; }
+.ana-owner-form button { height: 40px; padding: 0 14px; border: 1px solid var(--ink); background: var(--ink); color: #fff; font: 400 .75rem var(--sans); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; border-radius: 0; }

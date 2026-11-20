@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#1f4650">
 <title>ANA MARTINEZ · Nueva tienda muy pronto / New shop coming soon</title>
 <meta name="description" content="Láminas, pañuelos de seda y obra original. Prints, silk scarves and original work.">
 <link rel="icon" href="firma.png">
@@ -11,70 +12,58 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="page">
-  <div class="art">
-    <img src="obra.jpg" width="1614" height="2000" alt="Pintura de Ana Martínez: un bosque de kelp bajo el agua, con algas amarillas y ocres, peces oscuros y coral naranja. Painting by Ana Martínez: an underwater kelp forest with yellow and ochre seaweed, dark fish and orange coral.">
-  </div>
-  <main class="panel">
-    <header>
-      <img class="firma" src="firma.png" width="1600" height="436" alt="">
-      <p class="brand">ANA MARTINEZ</p>
-    </header>
-
-    <section class="stack" aria-label="Próximamente / Coming soon">
-      <div class="cols">
-        <div class="col" lang="es">
-          <p class="eyebrow">Próximamente</p>
-          <h1>Nueva tienda muy pronto</h1>
-          <p class="lead">Láminas, pañuelos de seda y obra original.</p>
-        </div>
-        <div class="col" lang="en">
-          <p class="eyebrow">Coming soon</p>
-          <h2>New shop coming soon</h2>
-          <p class="lead">Prints, silk scarves and original work.</p>
-        </div>
-      </div>
-
-      <!--
-        VERSIÓN GITHUB PAGES: este formulario NO guarda ningún dato ni envía nada a ningún sitio.
-        Solo muestra el mensaje de agradecimiento. En Shopify (carpeta shopify/) el formulario
-        usa {% form 'customer' %} y SÍ guarda el correo como cliente con las etiquetas proximamente,newsletter.
-      -->
-      <form class="aviso" id="aviso" action="#" method="post" style="margin-top:48px">
-        <div id="campos">
-          <label class="mail" for="email">Correo electrónico / Email</label>
-          <div class="row">
-            <input id="email" name="email" type="email" autocomplete="email" required placeholder="nombre@correo.com">
-            <button type="submit"><span lang="es">Avísame cuando abra</span><span lang="en">Let me know when it opens</span></button>
-          </div>
-          <label class="consent" for="consent">
-            <input id="consent" name="consent" type="checkbox" required>
-            <span><span lang="es">Acepto recibir el aviso de apertura y novedades. Puedo darme de baja cuando quiera.</span>
-              <em lang="en">I agree to receive the opening notice and news. I can unsubscribe at any time.</em></span>
-          </label>
-        </div>
-        <p class="gracias" id="gracias" role="status" aria-live="polite" hidden>
-          <span lang="es">Gracias, te avisaremos.</span>
-          <em lang="en">Thank you, we will let you know.</em>
-        </p>
-      </form>
-
-      <p class="links">
-        <a class="btn" href="https://antonioomsg.github.io/ana-martinez/"><span lang="es">Ver obra</span> / <span lang="en">See the work</span></a>
-        <a href="https://www.instagram.com/anamartinez_studio/" rel="noopener">Instagram @anamartinez_studio</a>
-        <a href="mailto:ana@ana-martinez.com">ana@ana-martinez.com</a>
-      </p>
-    </section>
-
-    <footer class="foot"><span>© 2026 ANA MARTINEZ</span></footer>
-  </main>
+<!-- Fondo: la portada real de la web de Ana, difuminada -->
+<div class="fondo" aria-hidden="true">
+  <picture>
+    <source media="(max-width: 700px)" srcset="fondo-movil.jpg">
+    <img src="fondo.jpg" width="1600" height="1000" alt="">
+  </picture>
 </div>
+
+<main class="modal" role="dialog" aria-modal="true" aria-labelledby="titulo">
+  <img class="firma" src="firma.png" width="1600" height="436" alt="Ana Martinez">
+  <p class="eyebrow"><span lang="es">Próximamente</span> · <span lang="en">Coming soon</span></p>
+  <h1 id="titulo" lang="es">Nueva tienda muy pronto</h1>
+  <p class="titulo-en" lang="en">New shop coming soon</p>
+  <p class="lead"><span lang="es">Láminas, pañuelos de seda y obra original.</span>
+    <em lang="en">Prints, silk scarves and original work.</em></p>
+
+  <!--
+    VERSIÓN GITHUB PAGES: este formulario NO guarda ningún dato ni envía nada a ningún sitio.
+    Solo muestra el mensaje de agradecimiento. En Shopify (carpeta shopify/) el formulario
+    usa {% form 'customer' %} y SÍ guarda el correo como cliente con las etiquetas proximamente,newsletter.
+  -->
+  <form class="aviso" id="aviso" action="#" method="post">
+    <div id="campos">
+      <label class="sr-only" for="email">Correo electrónico / Email</label>
+      <div class="row">
+        <input id="email" name="email" type="email" autocomplete="email" required placeholder="Tu correo / Your email">
+        <button type="submit"><span lang="es">Avísame</span><span lang="en">Notify me</span></button>
+      </div>
+      <label class="consent" for="consent">
+        <input id="consent" name="consent" type="checkbox" required>
+        <span><span lang="es">Acepto recibir el aviso de apertura y novedades. Puedo darme de baja cuando quiera.</span>
+          <em lang="en">I agree to receive the opening notice and news. I can unsubscribe at any time.</em></span>
+      </label>
+    </div>
+    <p class="gracias" id="gracias" role="status" aria-live="polite" hidden>
+      <span lang="es">Gracias, te avisaremos.</span>
+      <em lang="en">Thank you, we will let you know.</em>
+    </p>
+  </form>
+
+  <p class="links">
+    <a href="https://antonioomsg.github.io/ana-martinez/"><span lang="es">Ver obra</span> / <span lang="en">See the work</span></a>
+    <a href="https://www.instagram.com/anamartinez_studio/" rel="noopener">Instagram</a>
+    <a href="mailto:ana@ana-martinez.com">ana@ana-martinez.com</a>
+  </p>
+</main>
 <script>
   // Solo versión GitHub: simula el envío. No se transmite ni se guarda nada.
   document.getElementById('aviso').addEventListener('submit', function (e) {
     e.preventDefault();
     document.getElementById('campos').hidden = true;
-    var g = document.getElementById('gracias'); g.hidden = false;
+    document.getElementById('gracias').hidden = false;
   });
 </script>
 </body>

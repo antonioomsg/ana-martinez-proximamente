@@ -12,110 +12,99 @@
 </style>
 
 
-<div class="ana-page" {{ section.shopify_attributes }}>
-  <div class="ana-art">
-    {%- if section.settings.image != blank -%}
-      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600, 900, 1200, 1600, 2000', sizes: '(min-width: 901px) 42vw, 100vw', alt: section.settings.image_alt }}
+{%- comment -%} Fondo: imagen de la web difuminada (por defecto, captura de la portada de Ana). Cuando la tienda esté montada, se puede subir una captura de la tienda. {%- endcomment -%}
+<div class="ana-fondo" aria-hidden="true">
+  <picture>
+    {%- if section.settings.fondo_movil != blank -%}
+      <source media="(max-width: 700px)" srcset="{{ section.settings.fondo_movil | image_url: width: 900 }}">
     {%- else -%}
-      <img src="{{ 'ana-obra.jpg' | asset_url }}" width="1614" height="2000" alt="{{ section.settings.image_alt | escape }}" fetchpriority="high">
+      <source media="(max-width: 700px)" srcset="{{ 'ana-fondo-movil.jpg' | asset_url }}">
     {%- endif -%}
-  </div>
-
-  <main class="ana-panel">
-    <header>
-      <img class="ana-firma" src="{{ 'ana-firma.png' | asset_url }}" width="1600" height="436" alt="" loading="eager">
-      <p class="ana-brand">{{ section.settings.brand | escape }}</p>
-    </header>
-
-    <section aria-label="Próximamente / Coming soon">
-      <div class="ana-cols">
-        <div class="ana-col" lang="es">
-          <p class="ana-eyebrow">{{ section.settings.eyebrow_es | escape }}</p>
-          <h1>{{ section.settings.title_es | escape }}</h1>
-          <p class="ana-lead">{{ section.settings.lead_es | escape }}</p>
-        </div>
-        <div class="ana-col" lang="en">
-          <p class="ana-eyebrow">{{ section.settings.eyebrow_en | escape }}</p>
-          <h2>{{ section.settings.title_en | escape }}</h2>
-          <p class="ana-lead">{{ section.settings.lead_en | escape }}</p>
-        </div>
-      </div>
-
-      {%- comment -%} Formulario nativo de Shopify: guarda el correo como cliente con etiquetas {%- endcomment -%}
-      {%- form 'customer', id: 'ana-aviso', class: 'ana-aviso' -%}
-        <input type="hidden" name="contact[tags]" value="proximamente,newsletter">
-
-        {%- if form.posted_successfully? -%}
-          <p class="ana-gracias" role="status" aria-live="polite">
-            <span lang="es">{{ section.settings.thanks_es | escape }}</span>
-            <em lang="en">{{ section.settings.thanks_en | escape }}</em>
-          </p>
-        {%- else -%}
-          {%- if form.errors -%}
-            <div class="ana-error" role="alert">
-              <span lang="es">{{ section.settings.error_es | escape }}</span>
-              <em lang="en">{{ section.settings.error_en | escape }}</em>
-              <ul>
-                {%- for field in form.errors -%}
-                  <li>{{ form.errors.messages[field] }}</li>
-                {%- endfor -%}
-              </ul>
-            </div>
-          {%- endif -%}
-          <label class="ana-mail" for="ana-email">{{ section.settings.email_label | escape }}</label>
-          <div class="ana-row">
-            <input id="ana-email" name="contact[email]" type="email" autocomplete="email" required
-              placeholder="{{ section.settings.email_placeholder | escape }}"
-              value="{{ form.email | escape }}"
-              {% if form.errors contains 'email' %}aria-invalid="true"{% endif %}>
-            <button type="submit"><span lang="es">{{ section.settings.button_es | escape }}</span><span lang="en">{{ section.settings.button_en | escape }}</span></button>
-          </div>
-          <label class="ana-consent" for="ana-consent">
-            <input id="ana-consent" name="consent" type="checkbox" required>
-            <span><span lang="es">{{ section.settings.consent_es | escape }}</span>
-              <em lang="en">{{ section.settings.consent_en | escape }}</em></span>
-          </label>
-        {%- endif -%}
-      {%- endform -%}
-
-      <p class="ana-links">
-        {%- if section.settings.work_url != blank -%}
-          <a class="ana-btn" href="{{ section.settings.work_url }}"><span lang="es">{{ section.settings.work_es | escape }}</span> / <span lang="en">{{ section.settings.work_en | escape }}</span></a>
-        {%- endif -%}
-        {%- if section.settings.instagram_url != blank -%}
-          <a href="{{ section.settings.instagram_url }}" rel="noopener">{{ section.settings.instagram_label | escape }}</a>
-        {%- endif -%}
-        {%- if section.settings.email != blank -%}
-          <a href="mailto:{{ section.settings.email | escape }}">{{ section.settings.email | escape }}</a>
-        {%- endif -%}
-      </p>
-    </section>
-
-    <footer class="ana-foot">
-      <span>{{ section.settings.footer | escape }}</span>
-      {%- comment -%} Acceso discreto para la dueña de la tienda {%- endcomment -%}
-      <details class="ana-owner">
-        <summary>{{ section.settings.owner_label | escape }}</summary>
-        {%- form 'storefront_password', class: 'ana-owner-form' -%}
-          {%- if form.errors -%}
-            <p class="ana-error" role="alert">{{ form.errors | default_errors }}</p>
-          {%- endif -%}
-          <label class="sr-only" for="ana-password">Contraseña / Password</label>
-          <input id="ana-password" type="password" name="password" autocomplete="current-password" required placeholder="Contraseña / Password">
-          <button type="submit">{{ section.settings.owner_button | escape }}</button>
-        {%- endform -%}
-      </details>
-    </footer>
-  </main>
+    {%- if section.settings.fondo != blank -%}
+      <img src="{{ section.settings.fondo | image_url: width: 1600 }}" width="1600" height="1000" alt="" fetchpriority="high">
+    {%- else -%}
+      <img src="{{ 'ana-fondo.jpg' | asset_url }}" width="1600" height="1000" alt="" fetchpriority="high">
+    {%- endif -%}
+  </picture>
 </div>
+
+<main class="ana-modal" role="dialog" aria-modal="true" aria-labelledby="ana-titulo" {{ section.shopify_attributes }}>
+  <img class="ana-firma" src="{{ 'ana-firma.png' | asset_url }}" width="1600" height="436" alt="{{ section.settings.brand | escape }}" loading="eager">
+  <p class="ana-eyebrow"><span lang="es">{{ section.settings.eyebrow_es | escape }}</span> · <span lang="en">{{ section.settings.eyebrow_en | escape }}</span></p>
+  <h1 id="ana-titulo" lang="es">{{ section.settings.title_es | escape }}</h1>
+  <p class="ana-titulo-en" lang="en">{{ section.settings.title_en | escape }}</p>
+  <p class="ana-lead"><span lang="es">{{ section.settings.lead_es | escape }}</span>
+    <em lang="en">{{ section.settings.lead_en | escape }}</em></p>
+
+  {%- comment -%} Formulario nativo de Shopify: guarda el correo como cliente con etiquetas {%- endcomment -%}
+  {%- form 'customer', id: 'ana-aviso', class: 'ana-aviso' -%}
+    <input type="hidden" name="contact[tags]" value="proximamente,newsletter">
+    {%- if form.posted_successfully? -%}
+      <p class="ana-gracias" role="status" aria-live="polite">
+        <span lang="es">{{ section.settings.thanks_es | escape }}</span>
+        <em lang="en">{{ section.settings.thanks_en | escape }}</em>
+      </p>
+    {%- else -%}
+      {%- if form.errors -%}
+        <div class="ana-error" role="alert">
+          <span lang="es">{{ section.settings.error_es | escape }}</span>
+          <em lang="en">{{ section.settings.error_en | escape }}</em>
+          <ul>
+            {%- for field in form.errors -%}
+              <li>{{ form.errors.messages[field] }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+      <label class="ana-sr-only" for="ana-email">{{ section.settings.email_label | escape }}</label>
+      <div class="ana-row">
+        <input id="ana-email" name="contact[email]" type="email" autocomplete="email" required
+          placeholder="{{ section.settings.email_placeholder | escape }}"
+          value="{{ form.email | escape }}"
+          {% if form.errors contains 'email' %}aria-invalid="true"{% endif %}>
+        <button type="submit"><span lang="es">{{ section.settings.button_es | escape }}</span><span lang="en">{{ section.settings.button_en | escape }}</span></button>
+      </div>
+      <label class="ana-consent" for="ana-consent">
+        <input id="ana-consent" name="consent" type="checkbox" required>
+        <span><span lang="es">{{ section.settings.consent_es | escape }}</span>
+          <em lang="en">{{ section.settings.consent_en | escape }}</em></span>
+      </label>
+    {%- endif -%}
+  {%- endform -%}
+
+  <p class="ana-links">
+    {%- if section.settings.work_url != blank -%}
+      <a href="{{ section.settings.work_url }}"><span lang="es">{{ section.settings.work_es | escape }}</span> / <span lang="en">{{ section.settings.work_en | escape }}</span></a>
+    {%- endif -%}
+    {%- if section.settings.instagram_url != blank -%}
+      <a href="{{ section.settings.instagram_url }}" rel="noopener">{{ section.settings.instagram_label | escape }}</a>
+    {%- endif -%}
+    {%- if section.settings.email != blank -%}
+      <a href="mailto:{{ section.settings.email | escape }}">{{ section.settings.email | escape }}</a>
+    {%- endif -%}
+  </p>
+
+  {%- comment -%} Acceso discreto para la dueña de la tienda {%- endcomment -%}
+  <details class="ana-owner">
+    <summary>{{ section.settings.owner_label | escape }}</summary>
+    {%- form 'storefront_password', class: 'ana-owner-form' -%}
+      {%- if form.errors -%}
+        <p class="ana-error" role="alert">{{ form.errors | default_errors }}</p>
+      {%- endif -%}
+      <label class="ana-sr-only" for="ana-password">Contraseña / Password</label>
+      <input id="ana-password" type="password" name="password" autocomplete="current-password" required placeholder="Contraseña / Password">
+      <button type="submit">{{ section.settings.owner_button | escape }}</button>
+    {%- endform -%}
+  </details>
+</main>
 
 {% schema %}
 {
   "name": "Ana · Próximamente",
   "settings": [
-    { "type": "header", "content": "Imagen" },
-    { "type": "image_picker", "id": "image", "label": "Obra (si se deja vacía, se usa el kelp forest incluido)", "info": "Mejor vertical, ~2000 px de lado largo." },
-    { "type": "text", "id": "image_alt", "label": "Descripción de la imagen (accesibilidad)", "default": "Pintura de Ana Martínez: un bosque de kelp bajo el agua. Painting by Ana Martínez: an underwater kelp forest." },
+    { "type": "header", "content": "Fondo difuminado" },
+    { "type": "image_picker", "id": "fondo", "label": "Fondo en ordenador (si se deja vacío, la portada actual de la web)", "info": "Una captura de la web o de la tienda, horizontal. Se difumina sola." },
+    { "type": "image_picker", "id": "fondo_movil", "label": "Fondo en móvil (opcional)", "info": "Captura vertical." },
 
     { "type": "header", "content": "Marca" },
     { "type": "text", "id": "brand", "label": "Nombre", "default": "ANA MARTINEZ" },
@@ -124,7 +113,7 @@
     { "type": "text", "id": "eyebrow_es", "label": "Etiqueta", "default": "Próximamente" },
     { "type": "text", "id": "title_es", "label": "Título", "default": "Nueva tienda muy pronto" },
     { "type": "text", "id": "lead_es", "label": "Línea breve", "default": "Láminas, pañuelos de seda y obra original." },
-    { "type": "text", "id": "button_es", "label": "Botón", "default": "Avísame cuando abra" },
+    { "type": "text", "id": "button_es", "label": "Botón", "default": "Avísame" },
     { "type": "textarea", "id": "consent_es", "label": "Consentimiento", "default": "Acepto recibir el aviso de apertura y novedades. Puedo darme de baja cuando quiera." },
     { "type": "text", "id": "thanks_es", "label": "Mensaje de éxito", "default": "Gracias, te avisaremos." },
     { "type": "text", "id": "error_es", "label": "Mensaje de error", "default": "No hemos podido guardar tu correo." },
@@ -134,7 +123,7 @@
     { "type": "text", "id": "eyebrow_en", "label": "Label", "default": "Coming soon" },
     { "type": "text", "id": "title_en", "label": "Title", "default": "New shop coming soon" },
     { "type": "text", "id": "lead_en", "label": "Short line", "default": "Prints, silk scarves and original work." },
-    { "type": "text", "id": "button_en", "label": "Button", "default": "Let me know when it opens" },
+    { "type": "text", "id": "button_en", "label": "Button", "default": "Notify me" },
     { "type": "textarea", "id": "consent_en", "label": "Consent", "default": "I agree to receive the opening notice and news. I can unsubscribe at any time." },
     { "type": "text", "id": "thanks_en", "label": "Success message", "default": "Thank you, we will let you know." },
     { "type": "text", "id": "error_en", "label": "Error message", "default": "We could not save your email." },
@@ -142,15 +131,14 @@
 
     { "type": "header", "content": "Formulario" },
     { "type": "text", "id": "email_label", "label": "Etiqueta del campo", "default": "Correo electrónico / Email" },
-    { "type": "text", "id": "email_placeholder", "label": "Texto de ejemplo", "default": "nombre@correo.com" },
+    { "type": "text", "id": "email_placeholder", "label": "Texto de ejemplo", "default": "Tu correo / Your email" },
 
     { "type": "header", "content": "Enlaces y pie" },
     { "type": "url", "id": "work_url", "label": "Enlace «Ver obra»", "default": "https://antonioomsg.github.io/ana-martinez/" },
     { "type": "url", "id": "instagram_url", "label": "Instagram (URL)", "default": "https://www.instagram.com/anamartinez_studio/" },
-    { "type": "text", "id": "instagram_label", "label": "Instagram (texto)", "default": "Instagram @anamartinez_studio" },
+    { "type": "text", "id": "instagram_label", "label": "Instagram (texto)", "default": "Instagram" },
     { "type": "text", "id": "email", "label": "Correo de contacto", "default": "ana@ana-martinez.com" },
-    { "type": "text", "id": "footer", "label": "Pie", "default": "© 2026 ANA MARTINEZ" },
-
+    
     { "type": "header", "content": "Acceso de la propietaria" },
     { "type": "text", "id": "owner_label", "label": "Texto discreto", "default": "Acceso / Owner" },
     { "type": "text", "id": "owner_button", "label": "Botón", "default": "Entrar" }

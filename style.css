@@ -1,4 +1,4 @@
-/* Ana Martínez · Próximamente. Estilo heredado de la web (Jost + EB Garamond, licencia OFL en fonts/) */
+/* Ana Martínez · Próximamente (ventana sobre la web difuminada). Jost + EB Garamond, licencia OFL en fonts/ */
 @font-face { font-family: "Jost"; font-style: normal; font-weight: 300 500; font-display: swap; src: url("fonts/jost.woff2") format("woff2"); }
 @font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 400 600; font-display: swap; src: url("fonts/ebgaramond-roman.woff2") format("woff2"); }
 @font-face { font-family: "EB Garamond"; font-style: italic; font-weight: 400 600; font-display: swap; src: url("fonts/ebgaramond-italic.woff2") format("woff2"); }
@@ -13,58 +13,55 @@
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--sand); color: var(--ink); font-family: var(--serif); font-size: 1.125rem; line-height: 1.5; }
+body { margin: 0; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 24px;
+  background: #1f4650; color: var(--ink); font-family: var(--serif); font-size: 1.125rem; line-height: 1.5; }
 a { color: inherit; text-underline-offset: 4px; text-decoration-color: var(--accent); }
 a:hover { color: var(--soft); }
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
-.page { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); min-height: 100vh; min-height: 100svh; }
-.art { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: #1c4a55; }
-.art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; }
-
-.panel { display: flex; flex-direction: column; justify-content: space-between; gap: 48px; padding: 56px clamp(32px, 5vw, 88px) 32px; }
-.brand { margin: 0; font: 400 .875rem/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; }
-.firma { width: clamp(180px, 22vw, 280px); height: auto; margin: 0 0 8px -4px; filter: invert(1) brightness(.2) sepia(.4) hue-rotate(130deg); }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4vw, 64px); }
-.eyebrow { margin: 0 0 16px; font: 400 .75rem/1.2 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
-h1, h2 { margin: 0 0 16px; font-family: var(--serif); font-weight: 400; line-height: 1.1; font-size: clamp(1.9rem, 1.4rem + 1.6vw, 2.75rem); }
-.lead { margin: 0; font-size: 1.25rem; font-style: italic; }
-.col + .col { border-left: 1px solid rgba(25, 46, 46, .22); padding-left: calc(clamp(32px, 4vw, 64px) / 2); margin-left: calc(clamp(32px, 4vw, 64px) / -2); }
-
-.aviso { max-width: 720px; }
-.aviso label.mail { display: block; margin-bottom: 8px; font: 400 .75rem/1.2 var(--sans); letter-spacing: .16em; text-transform: uppercase; }
-.row { display: flex; gap: 0; }
-.row input[type=email] { flex: 1 1 auto; min-width: 0; height: 56px; border: 1px solid var(--ink); border-right: 0; background: #fff; padding: 0 18px; font: 400 1rem var(--sans); color: var(--ink); border-radius: 0; }
-.row input::placeholder { color: #5c6f6f; }
-.row button { height: 56px; padding: 0 24px; border: 1px solid var(--ink); background: var(--ink); color: #fff; font: 400 .8125rem/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
-.row button:hover { background: var(--soft); border-color: var(--soft); }
-.row button span { display: block; }
-.row button span + span { font-size: .6875rem; opacity: .85; margin-top: 2px; }
-.consent { display: flex; gap: 12px; align-items: flex-start; margin: 16px 0 0; font: 400 .875rem/1.45 var(--sans); }
-.consent input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--ink); }
-.consent em { display: block; margin-top: 4px; color: var(--soft); font-style: normal; }
-.gracias { margin: 0; font-size: 1.375rem; }
-.gracias em { display: block; color: var(--soft); }
 [hidden] { display: none !important; }
 
-.links { display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: center; margin-top: 24px; font: 400 .875rem var(--sans); letter-spacing: .08em; }
-.btn { display: inline-block; padding: 12px 22px; border: 1px solid var(--ink); text-decoration: none; text-transform: uppercase; letter-spacing: .12em; font-size: .8125rem; }
-.btn:hover { background: var(--ink); color: #fff; }
-.foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; padding-top: 24px; border-top: 1px solid rgba(25, 46, 46, .22); font: 400 .75rem/1.4 var(--sans); letter-spacing: .12em; color: var(--soft); }
+/* Fondo: la web detrás, borrosa y algo velada */
+.fondo { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+.fondo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: blur(14px) saturate(1.05); transform: scale(1.08); }
+.fondo::after { content: ""; position: absolute; inset: 0; background: rgba(15, 35, 40, .28); }
 
-@media (max-width: 900px) {
-  .page { display: block; }
-  .art { position: relative; height: 44svh; min-height: 260px; }
-  .art img { object-position: 50% 35%; }
-  .panel { padding: 40px 24px 28px; gap: 36px; }
-  .firma { width: 170px; }
+/* Ventana */
+.modal { position: relative; z-index: 1; width: min(100%, 560px); padding: 48px 48px 36px; text-align: center;
+  background: rgba(255, 255, 255, .96); box-shadow: 0 24px 70px rgba(0, 0, 0, .35);
+  animation: entra .6s ease-out both; }
+@keyframes entra { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: none; } }
+.firma { display: block; width: 210px; height: auto; margin: 0 auto 28px; filter: brightness(0); opacity: .88; }
+.eyebrow { margin: 0 0 14px; font: 400 .75rem/1.2 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--soft); }
+h1 { margin: 0; font: 400 clamp(1.875rem, 1.5rem + 1.6vw, 2.5rem)/1.1 var(--serif); }
+.titulo-en { margin: 6px 0 0; font: italic 400 clamp(1.25rem, 1.1rem + .7vw, 1.5rem)/1.2 var(--serif); color: var(--soft); }
+.lead { margin: 20px 0 0; font-size: 1.0625rem; }
+.lead em { display: block; color: var(--soft); }
+
+.aviso { margin: 28px 0 0; text-align: left; }
+.row { display: flex; }
+.row input[type=email] { flex: 1 1 auto; min-width: 0; height: 52px; border: 1px solid var(--ink); border-right: 0; background: #fff; padding: 0 16px; font: 400 1rem var(--sans); color: var(--ink); border-radius: 0; }
+.row input::placeholder { color: #5c6f6f; }
+.row button { flex: none; height: 52px; padding: 0 22px; border: 1px solid var(--ink); background: var(--ink); color: #fff; font: 400 .8125rem/1.15 var(--sans); letter-spacing: .14em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
+.row button:hover { background: var(--soft); border-color: var(--soft); }
+.row button span { display: block; }
+.row button span + span { font-size: .625rem; opacity: .8; margin-top: 2px; }
+.consent { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0 0; font: 400 .8125rem/1.45 var(--sans); }
+.consent input { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--ink); }
+.consent em { display: block; margin-top: 2px; color: var(--soft); font-style: normal; }
+.gracias { margin: 0; text-align: center; font-size: 1.375rem; }
+.gracias em { display: block; color: var(--soft); }
+
+.links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin: 30px 0 0; padding-top: 22px; border-top: 1px solid rgba(25, 46, 46, .18);
+  font: 400 .75rem var(--sans); letter-spacing: .12em; text-transform: uppercase; }
+.links a:last-child { text-transform: none; letter-spacing: .04em; font-size: .8125rem; }
+
+@media (max-width: 560px) {
+  body { padding: 16px; align-items: center; }
+  .modal { padding: 36px 22px 26px; }
+  .firma { width: 170px; margin-bottom: 22px; }
+  .row { flex-direction: column; }
+  .row input[type=email] { border-right: 1px solid var(--ink); border-bottom: 0; }
+  .row button { width: 100%; }
 }
-@media (max-width: 640px) {
-  .cols { grid-template-columns: 1fr; gap: 28px; }
-  .col + .col { border-left: 0; margin-left: 0; padding-left: 0; border-top: 1px solid rgba(25, 46, 46, .22); padding-top: 28px; }
-  .row { flex-direction: column; gap: 10px; }
-  .row input[type=email] { border-right: 1px solid var(--ink); }
-  .row button { width: 100%; padding: 12px 24px; }
-}
-@media (prefers-reduced-motion: no-preference) { .gracias { animation: in .5s ease; } @keyframes in { from { opacity: 0; } } }
+@media (prefers-reduced-motion: reduce) { .modal { animation: none; } }
