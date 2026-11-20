@@ -73,9 +73,6 @@
   {%- endform -%}
 
   <p class="ana-links">
-    {%- if section.settings.work_url != blank -%}
-      <a href="{{ section.settings.work_url }}"><span lang="es">{{ section.settings.work_es | escape }}</span> / <span lang="en">{{ section.settings.work_en | escape }}</span></a>
-    {%- endif -%}
     {%- if section.settings.instagram_url != blank -%}
       <a href="{{ section.settings.instagram_url }}" rel="noopener">{{ section.settings.instagram_label | escape }}</a>
     {%- endif -%}
@@ -117,7 +114,6 @@
     { "type": "textarea", "id": "consent_es", "label": "Consentimiento", "default": "Acepto recibir el aviso de apertura y novedades. Puedo darme de baja cuando quiera." },
     { "type": "text", "id": "thanks_es", "label": "Mensaje de éxito", "default": "Gracias, te avisaremos." },
     { "type": "text", "id": "error_es", "label": "Mensaje de error", "default": "No hemos podido guardar tu correo." },
-    { "type": "text", "id": "work_es", "label": "Enlace a la obra", "default": "Ver obra" },
 
     { "type": "header", "content": "English" },
     { "type": "text", "id": "eyebrow_en", "label": "Label", "default": "Coming soon" },
@@ -127,14 +123,12 @@
     { "type": "textarea", "id": "consent_en", "label": "Consent", "default": "I agree to receive the opening notice and news. I can unsubscribe at any time." },
     { "type": "text", "id": "thanks_en", "label": "Success message", "default": "Thank you, we will let you know." },
     { "type": "text", "id": "error_en", "label": "Error message", "default": "We could not save your email." },
-    { "type": "text", "id": "work_en", "label": "Link to the work", "default": "See the work" },
 
     { "type": "header", "content": "Formulario" },
     { "type": "text", "id": "email_label", "label": "Etiqueta del campo", "default": "Correo electrónico / Email" },
     { "type": "text", "id": "email_placeholder", "label": "Texto de ejemplo", "default": "Tu correo / Your email" },
 
     { "type": "header", "content": "Enlaces y pie" },
-    { "type": "url", "id": "work_url", "label": "Enlace «Ver obra»", "default": "https://antonioomsg.github.io/ana-martinez/" },
     { "type": "url", "id": "instagram_url", "label": "Instagram (URL)", "default": "https://www.instagram.com/anamartinez_studio/" },
     { "type": "text", "id": "instagram_label", "label": "Instagram (texto)", "default": "Instagram" },
     { "type": "text", "id": "email", "label": "Correo de contacto", "default": "ana@ana-martinez.com" },
